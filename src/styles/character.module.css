@@ -1,0 +1,32 @@
+.card {
+    border-radius: 1em;
+    box-shadow: 0.3em 0.5em 0.5em rgba(56, 56, 56, 0.28);
+    margin: 1em;
+    list-style: none;
+    overflow: hidden;
+}
+
+.img {
+    display: block;
+    max-width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 1em;
+    text-align: center;
+    gap: 0.3em;
+}
+
+.characterId {
+    display: block;
+    font-size: 2em;
+    color: rgb(98, 110, 110);
+}
+
+.characterName {
+   font-size: 2em;
+}

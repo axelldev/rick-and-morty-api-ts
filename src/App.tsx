@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import useFetch from './hooks/useFetch'
+import Characters from './components/Characters'
+import Character from './components/Character'
+import { character } from './components/Character'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const apiUrl = 'https://rickandmortyapi.com/api/character'
+
+type ApiResponse = {
+  results: character[]
 }
 
-export default App;
+function App() {
+  const { data, loading } = useFetch<ApiResponse>(`${apiUrl}`)
+
+  return (
+    <main className="main">
+      <h1 className="title">Rick and Morty API</h1>
+      <Characters>
+        {loading && <span> Loading ...</span>}
+        {data &&
+          data.results.map((character) => {
+            return <Character key={character.id} character={character} />
+          })}
+      </Characters>
+    </main>
+  )
+}
+
+export default App
